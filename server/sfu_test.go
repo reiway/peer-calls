@@ -11,6 +11,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/coder/websocket"
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server"
 	"github.com/peer-calls/peer-calls/v4/server/codecs"
@@ -21,12 +22,11 @@ import (
 	"github.com/peer-calls/peer-calls/v4/server/sfu"
 	"github.com/peer-calls/peer-calls/v4/server/test"
 	"github.com/peer-calls/peer-calls/v4/server/transport"
-	"github.com/pion/webrtc/v3"
-	"github.com/pion/webrtc/v3/pkg/media"
+	"github.com/pion/webrtc/v4"
+	"github.com/pion/webrtc/v4/pkg/media"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/goleak"
-	"nhooyr.io/websocket"
 )
 
 func setupSFUServer(rooms server.RoomManager, jitterBufferEnabled bool) (s *httptest.Server, url string) {

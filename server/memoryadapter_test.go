@@ -5,13 +5,13 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/coder/websocket"
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server"
 	"github.com/peer-calls/peer-calls/v4/server/identifiers"
 	"github.com/peer-calls/peer-calls/v4/server/message"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/goleak"
-	"nhooyr.io/websocket"
 )
 
 func TestMemoryAdapter_add_remove_clients(t *testing.T) {

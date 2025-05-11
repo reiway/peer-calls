@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/coder/websocket"
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server/identifiers"
 	"github.com/peer-calls/peer-calls/v4/server/logger"
 	"github.com/peer-calls/peer-calls/v4/server/message"
-	"nhooyr.io/websocket"
 )
 
 type ReadyMessage struct {

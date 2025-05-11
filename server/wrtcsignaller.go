@@ -7,7 +7,7 @@ import (
 	"github.com/peer-calls/peer-calls/v4/server/logger"
 	"github.com/peer-calls/peer-calls/v4/server/message"
 	"github.com/peer-calls/peer-calls/v4/server/transport"
-	"github.com/pion/webrtc/v3"
+	"github.com/pion/webrtc/v4"
 )
 
 type Signaller struct {
@@ -74,7 +74,7 @@ func (s *Signaller) initialize() error {
 		s.log.Debug("Pre-add video transceiver", nil)
 		_, err := s.peerConnection.AddTransceiverFromKind(
 			webrtc.RTPCodecTypeVideo,
-			webrtc.RtpTransceiverInit{
+			webrtc.RTPTransceiverInit{
 				Direction: webrtc.RTPTransceiverDirectionRecvonly,
 			},
 		)
@@ -85,7 +85,7 @@ func (s *Signaller) initialize() error {
 		s.log.Debug("Pre-add audio transceiver", nil)
 		_, err = s.peerConnection.AddTransceiverFromKind(
 			webrtc.RTPCodecTypeAudio,
-			webrtc.RtpTransceiverInit{
+			webrtc.RTPTransceiverInit{
 				Direction: webrtc.RTPTransceiverDirectionRecvonly,
 			},
 		)
@@ -235,7 +235,7 @@ func (s *Signaller) handleTransceiverRequest(transceiverRequest message.Transcei
 
 	s.negotiator.AddTransceiverFromKind(TransceiverRequest{
 		CodecType: codecType,
-		Init: webrtc.RtpTransceiverInit{
+		Init: webrtc.RTPTransceiverInit{
 			Direction: webrtc.RTPTransceiverDirectionSendrecv,
 		},
 	})

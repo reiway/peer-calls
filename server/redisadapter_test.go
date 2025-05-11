@@ -8,6 +8,7 @@ import (
 
 	"time"
 
+	"github.com/coder/websocket"
 	"github.com/go-redis/redis/v7"
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server"
@@ -16,7 +17,6 @@ import (
 	"github.com/peer-calls/peer-calls/v4/server/test"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/goleak"
-	"nhooyr.io/websocket"
 )
 
 func errIs(err error, target error) bool {

@@ -5,12 +5,12 @@ import (
 
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server/logger"
-	"github.com/pion/webrtc/v3"
+	"github.com/pion/webrtc/v4"
 )
 
 type TransceiverRequest struct {
 	CodecType webrtc.RTPCodecType
-	Init      webrtc.RtpTransceiverInit
+	Init      webrtc.RTPTransceiverInit
 }
 
 type Negotiator struct {

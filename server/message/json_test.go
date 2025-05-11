@@ -7,7 +7,7 @@ import (
 	"github.com/peer-calls/peer-calls/v4/server/identifiers"
 	"github.com/peer-calls/peer-calls/v4/server/message"
 	"github.com/peer-calls/peer-calls/v4/server/transport"
-	"github.com/pion/webrtc/v3"
+	"github.com/pion/webrtc/v4"
 	"github.com/stretchr/testify/assert"
 )
 

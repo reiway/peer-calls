@@ -16,7 +16,7 @@ RUN set -ex \
  && npm run build
 
 
-FROM golang:1.19.5-alpine as server
+FROM golang:1.23.9-alpine as server
 
 ENV CGO_ENABLED=0
 
@@ -34,6 +34,8 @@ RUN set -ex \
 # Add the application itself and build it
 COPY                  ./          /src/
 COPY --from=frontend  /src/build/ /src/build/
+RUN mkdir -p /src/recordings && chmod -R 777 /src/recordings
+
 
 ARG VERSION
 

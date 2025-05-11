@@ -6,12 +6,12 @@ import (
 	"sync"
 	"time"
 
+	"github.com/coder/websocket"
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server/identifiers"
 	"github.com/peer-calls/peer-calls/v4/server/logger"
 	"github.com/peer-calls/peer-calls/v4/server/message"
 	"github.com/peer-calls/peer-calls/v4/server/multierr"
-	"nhooyr.io/websocket"
 )
 
 type WSS struct {

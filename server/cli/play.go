@@ -12,6 +12,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/coder/websocket"
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server"
 	"github.com/peer-calls/peer-calls/v4/server/cli/play"
@@ -26,9 +27,8 @@ import (
 	"github.com/peer-calls/peer-calls/v4/server/uuid"
 	"github.com/pion/interceptor"
 	"github.com/pion/rtcp"
-	"github.com/pion/webrtc/v3"
+	"github.com/pion/webrtc/v4"
 	"github.com/spf13/pflag"
-	"nhooyr.io/websocket"
 )
 
 type playHandler struct {

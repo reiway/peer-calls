@@ -66,7 +66,7 @@ Alternatively, Docker  can be used to run Peer Calls.
  - [Golang][go]
  - [pion/webrtc][pion]
  - github.com/go-chi/chi
- - nhooyr.io/websocket
+ - github.com/coder/websocket
 
 [pion]: https://github.com/pion/webrtc
 

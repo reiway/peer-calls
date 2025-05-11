@@ -5,12 +5,12 @@ import (
 	"os"
 	"testing"
 
+	"github.com/coder/websocket"
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server"
 	"github.com/peer-calls/peer-calls/v4/server/identifiers"
 	"github.com/peer-calls/peer-calls/v4/server/message"
 	"github.com/stretchr/testify/require"
-	"nhooyr.io/websocket"
 )
 
 // This package contains commonly used test variables

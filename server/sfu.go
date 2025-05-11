@@ -6,13 +6,13 @@ import (
 	"sync"
 	"time"
 
+	"github.com/coder/websocket"
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server/identifiers"
 	"github.com/peer-calls/peer-calls/v4/server/logger"
 	"github.com/peer-calls/peer-calls/v4/server/message"
 	"github.com/peer-calls/peer-calls/v4/server/sfu"
 	"github.com/peer-calls/peer-calls/v4/server/transport"
-	"nhooyr.io/websocket"
 )
 
 const IOSH264Fmtp = "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f"

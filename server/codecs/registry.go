@@ -6,7 +6,7 @@ import (
 	"github.com/juju/errors"
 	"github.com/peer-calls/peer-calls/v4/server/transport"
 	"github.com/pion/interceptor"
-	"github.com/pion/webrtc/v3"
+	"github.com/pion/webrtc/v4"
 )
 
 var ErrUnsupportedMimeType = errors.Errorf("unsupported mime type")

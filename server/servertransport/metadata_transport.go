@@ -13,7 +13,7 @@ import (
 	"github.com/pion/interceptor"
 	"github.com/pion/randutil"
 	"github.com/pion/transport/packetio"
-	"github.com/pion/webrtc/v3"
+	"github.com/pion/webrtc/v4"
 )
 
 // Use global random generator to properly seed by crypto grade random.

@@ -13,7 +13,7 @@ import (
 	"github.com/peer-calls/peer-calls/v4/server/pubsub"
 	"github.com/peer-calls/peer-calls/v4/server/transport"
 	"github.com/pion/rtcp"
-	"github.com/pion/webrtc/v3"
+	"github.com/pion/webrtc/v4"
 )
 
 var ErrDuplicateTransport = errors.New("duplicate transport")

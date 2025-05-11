@@ -10,7 +10,7 @@ import (
 	"github.com/peer-calls/peer-calls/v4/server/logger"
 	"github.com/peer-calls/peer-calls/v4/server/multierr"
 	"github.com/peer-calls/peer-calls/v4/server/transport"
-	"github.com/pion/webrtc/v3"
+	"github.com/pion/webrtc/v4"
 )
 
 // PubSub keeps a record of all published tracks and subscriptions to them.

@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"net"
 	"strings"
 	"sync"
@@ -14,7 +15,7 @@ import (
 	"github.com/peer-calls/peer-calls/v4/server/transport"
 	"github.com/pion/interceptor"
 	"github.com/pion/rtcp"
-	"github.com/pion/webrtc/v3"
+	"github.com/pion/webrtc/v4"
 )
 
 type WebRTCTransportFactory struct {
@@ -171,6 +172,7 @@ type WebRTCTransport struct {
 
 	log logger.Logger
 
+	roomID   identifiers.RoomID
 	clientID identifiers.ClientID
 	peerID   identifiers.PeerID
 
@@ -288,7 +290,7 @@ func NewWebRTCTransport(
 		peerConnection,
 	)
 
-	peerConnection.OnICEGatheringStateChange(func(state webrtc.ICEGathererState) {
+	peerConnection.OnICEGatheringStateChange(func(state webrtc.ICEGatheringState) {
 		log.Info("ICE gathering state changed", logger.Ctx{
 			"state": state,
 		})
@@ -301,6 +303,7 @@ func NewWebRTCTransport(
 	transport := &WebRTCTransport{
 		log: log,
 
+		roomID:          roomID,
 		clientID:        clientID,
 		peerID:          peerID,
 		signaller:       signaller,
@@ -313,6 +316,7 @@ func NewWebRTCTransport(
 
 		remoteTracksChannel: make(chan transport.TrackRemoteWithRTCPReader),
 	}
+	go transport.startTrackProcessor()
 	peerConnection.OnTrack(transport.handleTrack)
 
 	go func() {
@@ -469,8 +473,9 @@ func (p *WebRTCTransport) LocalTracks() []transport.TrackWithMID {
 }
 
 func (p *WebRTCTransport) handleTrack(track *webrtc.TrackRemote, receiver *webrtc.RTPReceiver) {
-	rtpCodecParameters := track.Codec()
 
+	rtpCodecParameters := track.Codec()
+	fmt.Println("===== vô đây rtpCodecParameters ============", rtpCodecParameters)
 	codec := transport.Codec{
 		MimeType:    rtpCodecParameters.MimeType,
 		ClockRate:   rtpCodecParameters.ClockRate,
@@ -487,9 +492,10 @@ func (p *WebRTCTransport) handleTrack(track *webrtc.TrackRemote, receiver *webrt
 		TrackRemote: t,
 		RTCPReader:  receiver,
 	}
-
+	fmt.Println("===== vô đây ============")
 	select {
 	case p.remoteTracksChannel <- trwr:
+		fmt.Println("===== vô đây 1 ============")
 	case <-p.signaller.Done():
 	}
 
@@ -536,4 +542,15 @@ type RemoteTrack struct {
 
 func (t RemoteTrack) Track() transport.Track {
 	return t.track
+}
+
+func (p *WebRTCTransport) startTrackProcessor() {
+	for {
+		select {
+		case trwr := <-p.remoteTracksChannel:
+			p.handleIncomingTrack(trwr)
+		case <-p.signaller.Done():
+			return
+		}
+	}
 }
